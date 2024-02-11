@@ -1,0 +1,14 @@
+label {
+    font-weight: bold;
+    color: rgb(123, 32, 32);
+}
+
+input.ng-valid,
+select.ng-valid {
+    border-color: darkgreen;
+}
+
+input.ng-invalid.ng-touched,
+select.ng-invalid.ng-touched {
+    border-color: red;
+}

@@ -1,0 +1,99 @@
+<section class="container col-10 mt-5">
+    <form [formGroup]="student" (ngSubmit)="saveStudent()">
+        <div class="card">
+            <div class="card-header">
+                <h3>Student Registration Form</h3>
+            </div>
+            <div class="card-body row row-cols-5 g-4">
+
+                <!--During updation student Id is required otherwise spring create new student object-->
+                <input type="hidden" formControlName="studentId" class="form-control">
+
+                <div>
+                    <label for="">Name</label>
+                    <input type="text" formControlName="studentName" class="form-control">
+                    <small class="text-danger"
+                        *ngIf="student.get('studentName').invalid && (student.get('studentName').touched || student.get('studentName').dirty)">
+                        <div *ngIf="student.get('studentName').hasError('required')">Please Enter Name</div>
+                        <div *ngIf="student.get('studentName').hasError('minlength')">Name should be atleast 4
+                            charecters</div>
+                    </small>
+                </div>
+                <div>
+                    <label for="">DOB</label>
+                    <input type="date" formControlName="studentDob" class="form-control">
+                    <small class="text-danger"
+                        *ngIf="student.get('studentDob').invalid && (student.get('studentDob').touched || student.get('studentDob').dirty)">
+                        <div *ngIf="student.get('studentDob').hasError('required')">Please Enter DOB</div>
+                    </small>
+                </div>
+                <div>
+                    <label for="">Gender</label>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" formControlName="studentGender" value="Male">
+                        <label class="form-check-label" for=""> Male</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" formControlName="studentGender" value="Female">
+                        <label class="form-check-label" for=""> Female</label>
+                    </div>
+                </div>
+                <div>
+                    <label for="">Mobile</label>
+                    <input type="text" formControlName="studentMobile" class="form-control">
+                    <small class="text-danger"
+                        *ngIf="student.get('studentMobile').invalid && (student.get('studentMobile').touched || student.get('studentMobile').dirty)">
+                        <div *ngIf="student.get('studentMobile').hasError('required')">Please Enter Mobile</div>
+                        <div *ngIf="student.get('studentMobile').hasError('pattern')">Invalid Phone Number</div>
+                    </small>
+                </div>
+                <div>
+                    <label for="">Email</label>
+                    <input type="text" formControlName="studentEmail" class="form-control">
+                    <small class="text-danger"
+                        *ngIf="student.get('studentEmail').invalid && (student.get('studentEmail').touched || student.get('studentEmail').dirty)">
+                        <div *ngIf="student.get('studentEmail').hasError('required')">Please Enter Email</div>
+                        <div *ngIf="student.get('studentEmail').hasError('email')">Invalid Email</div>
+                    </small>
+                </div>
+                <div formGroupName="department">
+                    <label for="">Department</label>
+                    <select formControlName="departmentId" class="form-select">
+                        <option value="">-Select-</option>
+                        <option *ngFor="let dept of departmentList" [value]="dept.departmentId">{{dept.departmentName}}
+                        </option>
+                    </select>
+                </div>
+                <div formGroupName="country">
+                    <label for="">Country</label>
+                    <select formControlName="countryId" class="form-select">
+                        <option value="">-Select-</option>
+                        <option *ngFor="let country of countryList" [value]="country.countryId">{{country.countryName}}
+                        </option>
+                    </select>
+                </div>
+                <div formGroupName="state">
+                    <label for="">State</label>
+                    <select formControlName="stateId" class="form-select">
+                        <option value="">-Select-</option>
+                        <option *ngFor="let state of stateList" [value]="state.stateId">{{state.stateName}}
+                        </option>
+                    </select>
+                </div>
+                <div formGroupName="district">
+                    <label for="">District</label>
+                    <select formControlName="districtId" class="form-select">
+                        <option value="">-Select-</option>
+                        <option *ngFor="let district of districtList" [value]="district.districtId">
+                            {{district.districtName}}
+                        </option>
+                    </select>
+                </div>
+            </div>
+            <div class="mt-3 d-flex justify-content-center py-3 gap-2">
+                <button type="submit" class="btn btn-success" (click)="submitClicked()">Submit</button>
+                <button type="reset" class="btn btn-danger">Reset</button>
+            </div>
+        </div>
+    </form>
+</section>

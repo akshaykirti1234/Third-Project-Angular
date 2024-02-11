@@ -1,0 +1,12 @@
+.card {
+    box-shadow: 10px 10px 10px 2px grey;
+}
+
+.card:hover {
+    box-shadow: none;
+}
+
+img {
+    height: 250px;
+    object-fit: cover;
+}
